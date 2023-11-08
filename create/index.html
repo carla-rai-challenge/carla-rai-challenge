@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.68.3" />
+    <meta name="description" content="Documentation for Hugo Learn Theme">
+<meta name="author" content="Mathieu Cornic">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Creating an Agent :: Hugo Learn Documentation</title>
+
+    
+    <link href="/css/nucleus.css?1699453449" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1699453449" rel="stylesheet">
+    <link href="/css/hybrid.css?1699453449" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1699453449" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1699453449" rel="stylesheet">
+    <link href="/css/auto-complete.css?1699453449" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1699453449" rel="stylesheet">
+    <link href="/css/theme.css?1699453449" rel="stylesheet">
+    <link href="/css/tabs.css?1699453449" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1699453449" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1699453449"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/create/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href='/'>
+	<strong>Carla RAI Challenge</strong>
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1699453449"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1699453449"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1699453449"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/basics/" title="RAI Leaderboard" class="dd-item
+        
+        
+        
+        ">
+      <a href="/basics/">
+          <b>1. </b>RAI Leaderboard
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/create/" title="Creating an Agent" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/create/">
+          <b>2. </b>Creating an Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/submission/" title="Submitting an Agent" class="dd-item
+        
+        
+        
+        ">
+      <a href="/submission/">
+          <b>3. </b>Submitting an Agent
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/terms/" title="Terms &amp; Conditions" class="dd-item
+        
+        
+        
+        ">
+      <a href="/terms/">
+          <b>4. </b>Terms &amp; Conditions
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> </a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/create/_index.en.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Learn Theme for Hugo</a> > Creating an Agent
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-system-setup">1. System Setup</a>
+      <ul>
+        <li><a href="#11-get-carla-09101">1.1 Get CARLA 0.9.10.1</a></li>
+        <li><a href="#12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboard and Scenario_Runner</a></li>
+        <li><a href="#13-define-the-environment-variables">1.3 Define the environment variables</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-create-autonomous-agents-with-the-leaderboard">2. Create Autonomous Agents with the Leaderboard</a>
+      <ul>
+        <li><a href="#21-first-steps-with-the-leaderboard">2.1 First steps with the Leaderboard</a></li>
+        <li><a href="#22-understanding-the-leaderboard-components">2.2 Understanding the Leaderboard components</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-creating-your-own-autonomous-agent">3. Creating your own Autonomous Agent</a>
+      <ul>
+        <li><a href="#31-create-get_entry_point">3.1 Create get_entry_point</a></li>
+        <li><a href="#32-override-the-setup-method">3.2 Override the setup method</a></li>
+        <li><a href="#33-override-the-sensors-method">3.3 Override the sensors method</a></li>
+        <li><a href="#34-override-the-run_step-method">3.4 Override the run_step method</a></li>
+        <li><a href="#35-override-the-destroy-method">3.5 Override the destroy method</a></li>
+        <li><a href="#36-ros-based-agents">3.6 ROS based agents</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-training-and-testing-your-agent">4. Training and testing your agent</a>
+      <ul>
+        <li><a href="#41-baselines">4.1 Baselines</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Creating an Agent
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="1-system-setup">1. System Setup</h2>
+<h3 id="11-get-carla-09101">1.1 Get CARLA 0.9.10.1</h3>
+<ul>
+<li>
+<p>Download the binary <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.10.1.tar.gz" target="_blank" rel="noopener">CARLA 0.9.10.1 release.</a></p>
+</li>
+<li>
+<p>Unzip the package into a folder, e.g. CARLA.</p>
+</li>
+</ul>
+
+<div class="notices note" ><p>In the following commands, change the <code>${CARLA_ROOT}</code> variable to correspond to your CARLA root folder.</p>
+</div>
+
+<ul>
+<li>In order to use the CARLA Python API you will need to install some dependencies in your favorite environment. As a reference, for conda, start by creating a new environment:</li>
+</ul>
+<pre><code>conda create -n py37 python=3.7
+conda activate py37
+cd ${CARLA_ROOT}  # Change ${CARLA_ROOT} for your CARLA root folder
+
+pip3 install -r PythonAPI/carla/requirements.txt
+</code></pre><ul>
+<li>Download the set of <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/AdditionalMaps_0.9.10.1.tar.gz" target="_blank" rel="noopener">additional maps</a> to extend the amount of training data available. Follow the instructions provided <a href="https://carla.readthedocs.io/en/0.9.10/start_quickstart/#import-additional-assets" target="_blank" rel="noopener">here</a> to install these maps.</li>
+</ul>
+
+<div class="notices note" ><p>Make sure to download 0.9.10.1 and its corresponding maps. This is the exact version used by the online servers.</p>
+</div>
+
+<h3 id="12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboard and Scenario_Runner</h3>
+<ul>
+<li>Download the Leaderboard repository.(REMEBER TO UPDATE LINK)</li>
+</ul>
+<pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/leaderboard.git
+</code></pre>
+<div class="notices note" ><p>In the following commands, change the <code>${LEADERBOARD_ROOT}</code> variable to correspond to your Leaderboard root folder.</p>
+</div>
+
+<ul>
+<li>Install the required Python dependencies.</li>
+</ul>
+<pre><code>cd ${LEADERBOARD_ROOT} # Change ${LEADERBOARD_ROOT} for your Leaderboard root folder 
+pip3 install -r requirements.txt
+</code></pre><ul>
+<li>Download the Scenario_Runner repository.</li>
+</ul>
+<pre><code>git clone -b leaderboard --single-branch https://github.com/carla-simulator/scenario_runner.git
+</code></pre>
+<div class="notices note" ><p>In the following commands, change the <code>${SCENARIO_RUNNER_ROOT}</code> to correspond to your Scenario_Runner root folder.</p>
+</div>
+
+<ul>
+<li>Install the required Python dependencies using the same Python environments.</li>
+</ul>
+<pre><code>cd ${SCENARIO_RUNNER_ROOT} # Change ${SCENARIO_RUNNER_ROOT} for your Scenario_Runner root folder
+pip3 install -r requirements.txt
+</code></pre><h3 id="13-define-the-environment-variables">1.3 Define the environment variables</h3>
+<p>We need to make sure that the different modules can find each other.</p>
+<ul>
+<li>Open the ~/.bashrc profile with the following command:</li>
+</ul>
+<pre><code>gedit ~/.bashrc
+</code></pre><ul>
+<li>Edit your <code>~/.bashrc</code> profile, adding the definitions below. Save and close the file after editing.</li>
+</ul>
+<pre><code>export CARLA_ROOT=PATH_TO_CARLA_ROOT
+export SCENARIO_RUNNER_ROOT=PATH_TO_SCENARIO_RUNNER
+export LEADERBOARD_ROOT=PATH_TO_LEADERBOARD
+export PYTHONPATH=&quot;${CARLA_ROOT}/PythonAPI/carla/&quot;:&quot;${SCENARIO_RUNNER_ROOT}&quot;:&quot;${LEADERBOARD_ROOT}&quot;:&quot;${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg&quot;:${PYTHONPATH}
+</code></pre><ul>
+<li>Remember to source ``.bashrc` for these changes to take effect using the following command:</li>
+</ul>
+<p><code>source ~/.bashrc</code></p>
+<h2 id="2-create-autonomous-agents-with-the-leaderboard">2. Create Autonomous Agents with the Leaderboard</h2>
+<h3 id="21-first-steps-with-the-leaderboard">2.1 First steps with the Leaderboard</h3>
+<p>The Leaderboard will take care of running your autonomous agent and evaluate its behavior in different traffic situations across multiple routes. To better understand this process, let’s run a basic agent.</p>
+<ul>
+<li>Run the CARLA server in one terminal.</li>
+</ul>
+<pre><code>cd ${CARLA_ROOT}
+./CarlaUE4.sh -quality-level=Epic -world-port=2000 -resx=800 -resy=600
+</code></pre><ul>
+<li>In another terminal, navigate to the <code>${LEADERBOARD_ROOT}</code>. While the Leaderboard is run using a python script, the amount of arguments used can make it quite uncomfortable to directly do so using the terminal. Therefore, it is recommended to use a bash script:</li>
+</ul>
+<pre><code>touch test_run.sh
+chmod +x test_run.sh
+</code></pre><ul>
+<li>Paste the following code into <code>test_run.sh</code>. This will set some environment variables for parameterization, and run the <a href="https://github.com/carla-simulator/leaderboard/blob/master/scripts/run_evaluation.sh" target="_blank" rel="noopener">run_evaluation.sh REMEMBER TO UPDATE LINK</a>, which will use these variables as arguments to the <code>leaderboard_evaluator.py</code> script.</li>
+</ul>
+<pre><code># Parameterization settings. These will be explained in 2.2. Now simply copy them to run the test.
+export SCENARIOS=${LEADERBOARD_ROOT}/data/all_towns_traffic_scenarios_public.json
+export ROUTES=${LEADERBOARD_ROOT}/data/routes_devtest.xml
+export REPETITIONS=1
+export DEBUG_CHALLENGE=1
+export TEAM_AGENT=${LEADERBOARD_ROOT}/leaderboard/autoagents/human_agent.py
+export CHECKPOINT_ENDPOINT=${LEADERBOARD_ROOT}/results.json
+export CHALLENGE_TRACK_CODENAME=SENSORS
+
+./scripts/run_evaluation.sh
+</code></pre><ul>
+<li>Run the script:</li>
+</ul>
+<pre><code>./test_run.sh
+</code></pre><p>This will launch a pygame window giving you the option to manually control an agent. Follow the route indicated by colorful waypoints in order to get to your destination. The script cycles through 6 towns, loading a single test route in each one.</p>
+<p><img src="/images/getstarted/serverscreen.jpg" alt="Server Screen"></p>
+
+<div class="notices note" ><p>Manually interrupting the Leaderboard will preemptively stop the simulation of the route, automatically moving onto the next one.</p>
+</div>
+
+<h3 id="22-understanding-the-leaderboard-components">2.2 Understanding the Leaderboard components</h3>
+<p>When running the test, we set a series of parameters. Let’s understand these and their role in the Leaderboard.</p>
+<ul>
+<li>
+<p><code>SCENARIOS</code> <em>(JSON)</em> — The set of scenarios that will be tested in the simulation. A scenario is defined as a traffic situation. Agents will have to overcome these scenarios in order to pass the test. Participants have access to a set of traffic scenarios that work on the publicly available towns. There are 10 types of scenarios that are instantiated using different parameters. Here is a list of the available scenarios.</p>
+</li>
+<li>
+<p><code>ROUTES</code> <em>(XML)</em> — The set of routes that will be used for the simulation. Every route has a starting point (first waypoint), and an ending point (last waypoint). Additionally, they can contain a weather profile to set specific weather conditions. A XML contains many routes, each one with an ID. Users can modify, add, and remove routes for training and validation purposes. The Leaderboard ships with a set of routes for debug, training, and validation. The routes used for the online evaluation are secret.</p>
+</li>
+<li>
+<p><code>REPETITIONS</code> <em>(int)</em> — Number of times each route is repeated for statistical purposes.</p>
+</li>
+<li>
+<p><code>TEAM_AGENT</code> <em>(Python script)</em> — Path to the Python script that launches the agent. This has to be a class inherited from leaderboard.autoagents.autonomous_agent.AutonomousAgent. The steps to create an agent are explained in the next step.</p>
+</li>
+</ul>
+<p>Other relevant parameters are described below.</p>
+<ul>
+<li>
+<p><code>TEAM_CONFIG</code> <em>(defined by the user)</em> — Path to an arbitrary configuration file read by the provided agent. You are responsible to define and parse this file within your agent class.</p>
+</li>
+<li>
+<p><code>DEBUG_CHALLENGE</code> <em>(int)</em> — Flag that indicates if debug information should be shown during the simulation. By default this variable is unset (<code>0</code>), which produces no debug information to be displayed. When this is set to <code>1</code>, the simulator will display the reference route to be followed. If this variable is set to anything greater than <code>1</code> the engine will print the complete state of the simulation for debugging purposes.</p>
+</li>
+<li>
+<p><code>CHECKPOINT_ENDPOINT</code> <em>(JSON)</em> — The name of a file where the Leaderboad metrics will be recorded.</p>
+</li>
+<li>
+<p><code>RECORD_PATH</code> <em>(string)</em> — Path to a folder that will store the CARLA logs. This is unset by default.
+RESUME — Flag to indicate if the simulation should be resumed from the last route. This is unset by default.</p>
+</li>
+</ul>
+<p>These environment variables are passed to <code>${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py</code>, which serves as the entry point to perform the simulation. Take a look at leaderboard_evaluator.py to find out more details on how your agent will be executed and evaluated.</p>
+<h2 id="3-creating-your-own-autonomous-agent">3. Creating your own Autonomous Agent</h2>
+<p>The definition of a new agent starts by creating a new class that inherits from <code>leaderboard.autoagents.autonomous_agent.AutonomousAgent</code>.</p>
+<h3 id="31-create-get_entry_point">3.1 Create get_entry_point</h3>
+<p>First, define a function called <code>get_entry_point</code> that returns the name of your new class. This will be used to automatically instantiate your agent.</p>
+<pre><code>from leaderboard.autoagents.autonomous_agent import AutonomousAgent
+
+def get_entry_point():
+    return 'MyAgent'
+
+class MyAgent(AutonomousAgent):
+...
+</code></pre><h3 id="32-override-the-setup-method">3.2 Override the setup method</h3>
+<p>Within your agent class override the <code>setup</code> method. This method performs all the initialization and definitions needed by your agent. It will be automatically called each time a route is initialized. It can receive an optional argument pointing to a configuration file. Users are expected to parse this file.</p>
+<pre><code>from leaderboard.autoagents.autonomous_agent import Track
+...
+def setup(self, path_to_conf_file):
+    self.track = Track.SENSORS # At a minimum, this method sets the Leaderboard modality. In this case, SENSORS
+</code></pre><h3 id="33-override-the-sensors-method">3.3 Override the sensors method</h3>
+<p>You will also have to override the <code>sensors</code> method, which defines all the sensors required by your agent.</p>
+<pre><code>def sensors(self):
+    sensors = [
+        {'type': 'sensor.camera.rgb', 'id': 'Center',
+         'x': 0.7, 'y': 0.0, 'z': 1.60, 'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0, 'width': 300, 'height': 200, 'fov': 100},
+        {'type': 'sensor.lidar.ray_cast', 'id': 'LIDAR',
+         'x': 0.7, 'y': -0.4, 'z': 1.60, 'roll': 0.0, 'pitch': 0.0, 'yaw': -45.0},
+        {'type': 'sensor.other.radar', 'id': 'RADAR',
+         'x': 0.7, 'y': -0.4, 'z': 1.60, 'roll': 0.0, 'pitch': 0.0, 'yaw': -45.0, 'fov': 30},
+        {'type': 'sensor.other.gnss', 'id': 'GPS',
+         'x': 0.7, 'y': -0.4, 'z': 1.60},
+        {'type': 'sensor.other.imu', 'id': 'IMU',
+         'x': 0.7, 'y': -0.4, 'z': 1.60, 'roll': 0.0, 'pitch': 0.0, 'yaw': -45.0},
+        {'type': 'sensor.opendrive_map', 'id': 'OpenDRIVE', 'reading_frequency': 1},
+        {'type': 'sensor.speedometer', 'id': 'Speed'},
+    ]
+    return sensors
+</code></pre>
+<div class="notices note" ><p>Most of the sensor attributes have fixed values. These can be checked in agent_wrapper.py. This is done so that all the teams compete within a common sensor framework.</p>
+</div>
+
+<p>Every sensor is represented as a dictionary, containing the following attributes:</p>
+<ul>
+<li><code>type</code>: type of the sensor to be added.</li>
+<li><code>id</code>: the label that will be given to the sensor to be accessed later.</li>
+<li><code>other attributes</code>: these are sensor dependent, e.g.: extrinsics and fov.</li>
+</ul>
+<p>Users can set both intrinsics and extrinsic parameters (location and orientation) of each sensor, in relative coordinates with respect to the vehicle. Please, note that CARLA uses the Unreal Engine coordinate system, which is: <code>x-front</code>, <code>y-right</code>, <code>z-up</code>.</p>
+<p>The available sensors are:</p>
+<ul>
+<li><a href="https://carla.readthedocs.io/en/0.9.10/ref_sensors/#rgb-camera" target="_blank" rel="noopener">sensor.camera.rgb</a> — Regular camera that captures images.</li>
+<li><a href="https://carla.readthedocs.io/en/0.9.10/ref_sensors/#lidar-sensor" target="_blank" rel="noopener">sensor.lidar.ray_cast</a> — Velodyne 64 LIDAR.</li>
+<li><a href="https://carla.readthedocs.io/en/0.9.10/ref_sensors/#radar-sensor" target="_blank" rel="noopener">sensor.other.radar</a> — Long-range RADAR (up to 100 meters).</li>
+<li><a href="https://carla.readthedocs.io/en/0.9.10/ref_sensors/#gnss-sensor" target="_blank" rel="noopener">sensor.other.gnss</a> — GPS sensor returning geo location data.</li>
+<li><a href="https://carla.readthedocs.io/en/0.9.10/ref_sensors/#imu-sensor" target="_blank" rel="noopener">sensor.other.imu</a> — 6-axis Inertial Measurement Unit.</li>
+<li><code>sensor.speedometer</code> — Pseudosensor that provides an approximation of your linear velocity.</li>
+</ul>
+
+<div class="notices note" ><p>Trying to set another sensor or misspelling these, will make the set up fail.</p>
+</div>
+
+<p>You can use any of these sensors to configure your sensor stack. However, in order to keep a moderate computational load we have set the following limits to the number of sensors that can be added to an agent:</p>
+<ul>
+<li><code>sensor.camera.rgb</code>: 4</li>
+<li><code>sensor.lidar.ray_cast</code>: 1</li>
+<li><code>sensor.other.radar</code>: 2</li>
+<li><code>sensor.other.gnss</code>: 1</li>
+<li><code>sensor.other.imu</code>: 1</li>
+<li><code>sensor.opendrive_map</code>: 1</li>
+<li><code>sensor.speedometer</code>: 1</li>
+</ul>
+
+<div class="notices note" ><p>Trying to set too many units of a sensor will make the set up fail.</p>
+</div>
+
+<p>There are also spatial restrictions that limit the placement of your sensors within the volume of your vehicle. If a sensor is located more than 3 meters away from its parent in any axis (<em>e.g. <code>[3.1,0.0,0.0]</code></em>), the setup will fail.</p>
+<h3 id="34-override-the-run_step-method">3.4 Override the run_step method</h3>
+<p>This method will be called once per time step to produce a new action in the form of a <a href="https://carla.readthedocs.io/en/latest/python_api/#carlavehiclecontrol" target="_blank" rel="noopener">carla.VehicleControl</a> object. Make sure this function returns the control object, which will be use to update your agent.</p>
+<pre><code>def run_step(self, input_data, timestamp):
+    control = self._do_something_smart(input_data, timestamp)
+    return control
+</code></pre><ul>
+<li>
+<p><strong>input_data</strong>: A dictionary containing sensor data for the requested sensors. The data has been preprocessed at <a href="https://github.com/carla-simulator/leaderboard/blob/stable/leaderboard/envs/sensor_interface.py#L140" target="_blank" rel="noopener">REMEMBER TO UPDATE LINK sensor_interface.py</a>, and will be given as numpy arrays. This dictionary is indexed by the ids defined in the <a href="https://leaderboard.carla.org/get_started_v1/#33-override-the-sensors-method" target="_blank" rel="noopener">sensor</a> method.</p>
+</li>
+<li>
+<p><strong>timestamp</strong>: A timestamp of the current simulation instant.</p>
+</li>
+</ul>
+<p>Remember that you also have access to the route that the ego agent should travel to achieve its destination. Use the self._global_plan member to access the geolocation route and self._global_plan_world_coord for its world location counterpart.</p>
+<h3 id="35-override-the-destroy-method">3.5 Override the destroy method</h3>
+<p>At the end of each route, the <code>destroy</code> method will be called, which can be overriden by your agent, in cases where you need a cleanup. As an example, you can make use of this function to erase any unwanted memory of a network</p>
+<pre><code>def destroy(self):
+    pass
+</code></pre><h3 id="36-ros-based-agents">3.6 ROS based agents</h3>
+<p>In case you want to use ROS as part of your agent, here are some recommendations to take into account:</p>
+<ul>
+<li><strong>ROS Melodic</strong>: Due to the leaderboard being only compatible with Python 3, we recommend using <a href="https://github.com/gramaziokohler/roslibpy" target="_blank" rel="noopener">roslibpy</a> to communicate between the leaderboard and your ROS stack.</li>
+<li><strong>ROS Noetic</strong>: As ROS Noetic is targetting Python 3, you can directly use <strong>rospy</strong> to create a node to communicate the leaderboard with your ROS stack.</li>
+<li><strong>ROS2 Foxy</strong>: Similar to ROS Noetic, you can directly use <strong>rclpy</strong> to establish the communication with your stack.</li>
+</ul>
+<h2 id="4-training-and-testing-your-agent">4. Training and testing your agent</h2>
+<p>We have prepared a set of predefined routes to serve as a starting point. You can use these routes for training and verifying the performance of your agent. Routes can be found in the folder {LEADERBOARD_ROOT}/data:</p>
+<p>routes_training.xml: 50 routes intended to be used as training data (112.8 Km).
+routes_testing.xml: 26 routes intended to be used as verification data (58.9 Km).</p>
+<h3 id="41-baselines">4.1 Baselines</h3>
+<p><a href="https://github.com/bradyz" target="_blank" rel="noopener">Brady Zhou</a> has created a wonderful <a href="https://github.com/bradyz/2020_CARLA_challenge/" target="_blank" rel="noopener">starter kit</a> based on the <a href="https://arxiv.org/abs/1912.12294" target="_blank" rel="noopener">Learning by Cheating</a> approach.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/basics/" title="RAI Leaderboard"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/submission/" title="Submitting an Agent" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1699453449"></script>
+    <script src="/js/perfect-scrollbar.min.js?1699453449"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1699453449"></script>
+    <script src="/js/jquery.sticky.js?1699453449"></script>
+    <script src="/js/featherlight.min.js?1699453449"></script>
+    <script src="/js/highlight.pack.js?1699453449"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1699453449"></script>
+    <script src="/js/learn.js?1699453449"></script>
+    <script src="/js/hugo-learn.js?1699453449"></script>
+    
+        
+            <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105947713-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
