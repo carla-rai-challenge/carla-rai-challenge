@@ -1187,8 +1187,8 @@ th, td, p {
 }
 
 .media img {
-    margin-bottom: -10px;
-    height: 20px !important;
+    margin-bottom: -10px !important;
+    height: 275px !important;
   }
 
 .copy-to-clipboard {
