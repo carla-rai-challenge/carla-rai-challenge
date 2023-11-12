@@ -1276,3 +1276,8 @@ pre .copy-to-clipboard:hover {
 option {
     color: initial;
 }
+
+.media img {
+    margin-bottom: 2px !important;
+    height: 275px !important;
+  }
