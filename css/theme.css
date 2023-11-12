@@ -181,8 +181,10 @@ a:hover {
 
 
 
-
-
+img {
+    object-fit: contain;
+  }
+  
 
 pre {
     position: relative;
