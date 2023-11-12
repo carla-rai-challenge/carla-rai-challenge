@@ -1278,6 +1278,6 @@ option {
 }
 
 .media img {
-    margin-bottom: 2px !important;
+    margin-bottom: -10px !important;
     height: 275px !important;
   }
