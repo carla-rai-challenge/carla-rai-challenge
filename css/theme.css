@@ -1281,3 +1281,11 @@ option {
     margin-bottom: -10px !important;
     height: 275px !important;
   }
+
+#sponsors {
+    height: 150px !important;
+}
+
+#partners {
+    height: 150px !important;
+}
