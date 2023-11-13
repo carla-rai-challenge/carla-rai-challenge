@@ -49,6 +49,13 @@
 	"content": ""
 },
 {
+	"uri": "/contact/",
+	"title": "Contact Information",
+	"tags": [],
+	"description": "",
+	"content": "Please contact us at carla_rai@oxfordrobotics.institute if you have any questions or need more information.\n"
+},
+{
 	"uri": "/credits/",
 	"title": "Credits",
 	"tags": [],
