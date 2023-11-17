@@ -180,6 +180,10 @@ a:hover {
 }
 
 
+
+
+
+
 pre {
     position: relative;
     color: #ffffff;
@@ -447,7 +451,6 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     margin-left: 300px;
     min-height: 100%;
 }
-
 #body img, #body .video-container {
     margin: 3rem auto;
     display: block;
@@ -1185,12 +1188,6 @@ th, td, p {
         cursor: pointer;
     }
 }
-
-.media img {
-    margin-bottom: -10px !important;
-    height: 275px !important;
-  }
-
 .copy-to-clipboard {
     background-image: url(../images/clippy.svg);
     background-position: 50% 50%;
@@ -1278,4 +1275,17 @@ pre .copy-to-clipboard:hover {
 
 option {
     color: initial;
+}
+
+.media img {
+    margin-bottom: -10px !important;
+    height: 275px !important;
+  }
+
+#sponsors {
+    height: 150px !important;
+}
+
+#partners {
+    height: 150px !important;
 }
