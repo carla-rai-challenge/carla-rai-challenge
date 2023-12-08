@@ -35,8 +35,17 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/credits/</guid>
-      <description>Sponsors This challenge builds upon the previous Carla Challenges, utilising some of their codes as boilerplates and adapting re-using contents from their sites. We thank the Carla team for granting us the access and for their support. We also thank AWS for providing us with AWS credits to run this challenge.
+      <description>Sponsors This challenge builds upon the previous Carla Challenges, utilising some of their codes as boilerplates and adapting contents from their sites. We thank the Carla team their support. We also thank AWS for providing us with AWS credits to run this challenge.
 Partners </description>
+    </item>
+    
+    <item>
+      <title>RAI Paper</title>
+      <link>/paper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/paper/</guid>
+      <description>We are writing a paper to motivate the need for objective means for assessing autonomous driving agents and provide a few technical details. A link shall be provided here soon!</description>
     </item>
     
   </channel>

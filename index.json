@@ -60,7 +60,14 @@
 	"title": "Credits",
 	"tags": [],
 	"description": "",
-	"content": "Sponsors This challenge builds upon the previous Carla Challenges, utilising some of their codes as boilerplates and adapting re-using contents from their sites. We thank the Carla team for granting us the access and for their support. We also thank AWS for providing us with AWS credits to run this challenge.\nPartners "
+	"content": "Sponsors This challenge builds upon the previous Carla Challenges, utilising some of their codes as boilerplates and adapting contents from their sites. We thank the Carla team their support. We also thank AWS for providing us with AWS credits to run this challenge.\nPartners "
+},
+{
+	"uri": "/paper/",
+	"title": "RAI Paper",
+	"tags": [],
+	"description": "",
+	"content": "We are writing a paper to motivate the need for objective means for assessing autonomous driving agents and provide a few technical details. A link shall be provided here soon!\n"
 },
 {
 	"uri": "/tags/",
