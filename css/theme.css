@@ -1280,8 +1280,7 @@ option {
 .media img {
     margin-bottom: -10px !important;
     height: 275px !important;
-    pointer-events: none;
-    cursor: default;
+    pointer-events: none !important;
   }
 
 #sponsors {
