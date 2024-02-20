@@ -12,20 +12,20 @@
     <title>RAI Leaderboard :: Carla RAI Challenge 2023</title>
 
     
-    <link href="/css/nucleus.css?1701996979" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1701996979" rel="stylesheet">
-    <link href="/css/hybrid.css?1701996979" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1701996979" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1701996979" rel="stylesheet">
-    <link href="/css/auto-complete.css?1701996979" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1701996979" rel="stylesheet">
-    <link href="/css/theme.css?1701996979" rel="stylesheet">
-    <link href="/css/tabs.css?1701996979" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1701996979" rel="stylesheet">
+    <link href="/css/nucleus.css?1708449846" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1708449846" rel="stylesheet">
+    <link href="/css/hybrid.css?1708449846" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1708449846" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1708449846" rel="stylesheet">
+    <link href="/css/auto-complete.css?1708449846" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1708449846" rel="stylesheet">
+    <link href="/css/theme.css?1708449846" rel="stylesheet">
+    <link href="/css/tabs.css?1708449846" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1708449846" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1701996979"></script>
+    <script src="/js/jquery-3.3.1.min.js?1708449846"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1701996979"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1701996979"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1708449846"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1708449846"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1701996979"></script>
+<script type="text/javascript" src="/js/search.js?1708449846"></script>
 
     
   </div>
@@ -279,8 +279,8 @@
 
 
 
-	<p>The Carla RAI Autonomous Driving challenge requires that agents navigate predefined routes with various real-world traffic scenarios. Agents, initialized at a designated starting point, are directed to drive to a specified destination using route information presented in GPS-style coordinates, map coordinates, or route instructions. The primary objective of the Carla RAI AD leaderboard is to assess how robust the agents are to different challenging naturally occuring traffic conditions, how much they impact environmental sustainability, and how transparent they are.</p>
-<p><img src="/images/task/carla-teaser2.jpg" alt="ChallengeTeaser"></p>
+	<p>The CARLA RAI Autonomous Driving challenge requires that agents navigate predefined routes with various real-world traffic scenarios. Agents, initialized at a designated starting point, are directed to drive to a specified destination using route information presented in GPS-style coordinates, map coordinates, or route instructions. The primary objective of the Carla RAI AD leaderboard is to assess how robust the agents are to different challenging naturally occuring traffic conditions, how much they impact environmental sustainability, and how transparent they are.</p>
+<p><img src="/images/task/carla-teaser.png" alt="ChallengeTeaser"></p>
 <h3 id="scenarios">Scenarios</h3>
 <p>Agents will face multiple traffic scenarios based on the
 <a href="https://www.nhtsa.gov/sites/nhtsa.gov/files/pre-crash_scenario_typology-final_pdf_version_5-2-07.pdf" target="_blank" rel="noopener">NHTSA typology</a>. Scenarios are a subset of the <a href="https://leaderboard.carla.org/scenarios/" target="_blank" rel="noopener">original Carla challenge scenarios</a>.</p>
@@ -365,21 +365,30 @@
 </tbody>
 </table>
 <h3 id="evaluation-and-metrics">Evaluation and Metrics</h3>
-<p>The driving proficiency of an agent can be characterized by multiple metrics. For this leaderboard we have selected a set of metrics that help understand different aspects of driving. While all routes have the same type of metrics, their respective values are calculated separately. The specific metrics are as follows:</p>
-<ul>
-<li>
-<p>Driving score: R_i P_i,— Main metric of the leaderboard, serving as the product between the route completion and the infractions penalty. Here R_i is the percentage of completion of the i − th
+<p>The driving proficiency of an agent can be characterized by multiple metrics. For this leaderboard we have selected a set of metrics that help understand different aspects of driving. The specific metrics are as follows:</p>
+<h4 id="driving-score">Driving Score</h4>
+<p>The driving score (R_i P_i) is the product between the route completion and the infractions penalty. Here R_i is the percentage of completion of the i − th
 route, and P_i, the infraction penalty of the i − th route.</p>
-</li>
+<ul>
 <li>
 <p>Route completion: Percentage of the route distance completed by an agent.</p>
 </li>
 <li>
-<p>Infraction penalty: ∏^(ped., &hellip;, stop)_j((P_i)^i)(#infractions)_j — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited.</p>
+<p>Infraction penalty: ∏^(ped., &hellip;, stop)_j((P_i)^i)(#infractions)_j — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited. More details about the different infraction types are described at the bottom of this page.</p>
 </li>
 </ul>
-<p>When all routes have been completed, a global metric for each of the previous three types is also generated, being the arithmetic mean of all the individual routes combined. The global driving score is the main metric on which you will be classified with respect to other participants.</p>
-<h4 id="infractions-and-shutdown-events">Infractions and shutdown events</h4>
+<h4 id="robustness">Robustness</h4>
+<p>Each route would be run more than once depending on which type of traffic disturbances are introduced, e.g., if the traffic disturbance is weather and there are 3 weather types, then the route would be run 3 times each in a different weather condition. When a route has been run for the desired number of times:</p>
+<ul>
+<li>(i) The driving scores (i.e., after penalties have been applied) for the runs are grouped based on the type of traffic disturbances introduced. For example, weather driving scores [&hellip;], camera noise driving scores [&hellip;], &hellip;</li>
+<li>(ii) final score for each type of traffic disturbance is obtained by selecting the minimum score from each group. For example, if a route was run in n different weather conditions, the driving score for weather driving score would be the least driving score obtained after running the agent in n different weather conditions. If there are more than one routes, we will use the score from the route that produced the least score for the selected traffic disturbance type.</li>
+<li>(iii) A robustness score is computed as ratio of the driving score obtained when the disturbance is introduced and the driving score of obtained in the normal driving case. The normal driving case has no disturbance introduced.</li>
+</ul>
+<h4 id="environmental-sustainability">Environmental Sustainability</h4>
+<p>For each run we estimate the amount of CO2 Eq emitted as a result of running the agent. Note that only the system/compute process running the agent is tracked. We provide the average CO2 Eq emission for the runs as  well as the average CO2 Eq emission per seconds.</p>
+<h4 id="transparency">Transparency</h4>
+<p>As it is currently difficult to automatically assess weather an agent is interpretable or not, in this version of CARLA RAI Challenge, we are only using the qualitative responses provided by the participants regarding the transparency measures/considerations they have made while developing their agents.</p>
+<h3 id="infractions-and-shutdown-events-contd">Infractions and shutdown events (Contd.)</h3>
 <p>The CARLA leaderboard offers individual metrics for a series of infractions. Each of these has a penalty coefficient that will be applied everytime it happens. Ordered by severity, the infractions are the following.</p>
 <ul>
 <li><strong>Collisions with pedestrians</strong> — <code>0.50</code>.</li>
@@ -567,16 +576,16 @@ Additionally, some events will interrupt the simulation, preventing the agent to
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1701996979"></script>
-    <script src="/js/perfect-scrollbar.min.js?1701996979"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1701996979"></script>
-    <script src="/js/jquery.sticky.js?1701996979"></script>
-    <script src="/js/featherlight.min.js?1701996979"></script>
-    <script src="/js/highlight.pack.js?1701996979"></script>
+    <script src="/js/clipboard.min.js?1708449846"></script>
+    <script src="/js/perfect-scrollbar.min.js?1708449846"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1708449846"></script>
+    <script src="/js/jquery.sticky.js?1708449846"></script>
+    <script src="/js/featherlight.min.js?1708449846"></script>
+    <script src="/js/highlight.pack.js?1708449846"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1701996979"></script>
-    <script src="/js/learn.js?1701996979"></script>
-    <script src="/js/hugo-learn.js?1701996979"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1708449846"></script>
+    <script src="/js/learn.js?1708449846"></script>
+    <script src="/js/hugo-learn.js?1708449846"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>

@@ -12,20 +12,20 @@
     <title>Creating an Agent :: Carla RAI Challenge 2023</title>
 
     
-    <link href="/css/nucleus.css?1701996979" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1701996979" rel="stylesheet">
-    <link href="/css/hybrid.css?1701996979" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1701996979" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1701996979" rel="stylesheet">
-    <link href="/css/auto-complete.css?1701996979" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1701996979" rel="stylesheet">
-    <link href="/css/theme.css?1701996979" rel="stylesheet">
-    <link href="/css/tabs.css?1701996979" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1701996979" rel="stylesheet">
+    <link href="/css/nucleus.css?1708449846" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1708449846" rel="stylesheet">
+    <link href="/css/hybrid.css?1708449846" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1708449846" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1708449846" rel="stylesheet">
+    <link href="/css/auto-complete.css?1708449846" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1708449846" rel="stylesheet">
+    <link href="/css/theme.css?1708449846" rel="stylesheet">
+    <link href="/css/tabs.css?1708449846" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1708449846" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1701996979"></script>
+    <script src="/js/jquery-3.3.1.min.js?1708449846"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1701996979"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1701996979"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1708449846"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1708449846"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1701996979"></script>
+<script type="text/javascript" src="/js/search.js?1708449846"></script>
 
     
   </div>
@@ -268,7 +268,7 @@
   <ul>
     <li><a href="#1-system-setup">1. System Setup</a>
       <ul>
-        <li><a href="#11-get-carla-0914">1.1 Get CARLA 0.9.14</a></li>
+        <li><a href="#11-get-carla-09101">1.1 Get CARLA 0.9.10.1</a></li>
         <li><a href="#12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboard and Scenario_Runner</a></li>
         <li><a href="#13-define-the-environment-variables">1.3 Define the environment variables</a></li>
       </ul>
@@ -320,10 +320,10 @@
 
 
 	<h2 id="1-system-setup">1. System Setup</h2>
-<h3 id="11-get-carla-0914">1.1 Get CARLA 0.9.14</h3>
+<h3 id="11-get-carla-09101">1.1 Get CARLA 0.9.10.1</h3>
 <ul>
 <li>
-<p>Download the binary <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.14.tar.gz" target="_blank" rel="noopener">CARLA 0.9.14 release.</a></p>
+<p>Download the binary <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.10.1.tar.gz" target="_blank" rel="noopener">CARLA 0.9.10.1 release.</a></p>
 </li>
 <li>
 <p>Unzip the package into a folder, e.g. CARLA.</p>
@@ -342,17 +342,17 @@ cd ${CARLA_ROOT}  # Change ${CARLA_ROOT} for your CARLA root folder
 
 pip3 install -r PythonAPI/carla/requirements.txt
 </code></pre><ul>
-<li>Download the set of <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/AdditionalMaps_0.9.14.tar.gz" target="_blank" rel="noopener">additional maps</a> to extend the amount of training data available. Follow the instructions provided <a href="https://carla.readthedocs.io/en/0.9.14/start_quickstart/#import-additional-assets" target="_blank" rel="noopener">here</a> to install these maps.</li>
+<li>Download the set of <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/AdditionalMaps_0.9.10.1.tar.gz" target="_blank" rel="noopener">additional maps</a> to extend the amount of training data available. Follow the instructions provided <a href="https://carla.readthedocs.io/en/0.9.10/start_quickstart/#import-additional-assets" target="_blank" rel="noopener">here</a> to install these maps.</li>
 </ul>
 
-<div class="notices note" ><p>Make sure to download 0.9.14. This is the exact version used by the online servers.</p>
+<div class="notices note" ><p>Make sure to download 0.9.10.1. This is the exact version used by the online servers.</p>
 </div>
 
 <h3 id="12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboard and Scenario_Runner</h3>
 <ul>
 <li>Download the Leaderboard repository.(REMEBER TO UPDATE LINK)</li>
 </ul>
-<pre><code>git clone -b rai_leaderboard-2.0 --single-branch https://github.com/cognitive-robots/carla-challenge.git
+<pre><code>git clone -b rai_leaderboard-1.0 --single-branch https://github.com/cognitive-robots/carla-challenge.git
 </code></pre>
 <div class="notices note" ><p>In the following commands, change the <code>${LEADERBOARD_ROOT}</code> variable to correspond to your Leaderboard root folder.</p>
 </div>
@@ -411,11 +411,9 @@ chmod +x test_run.sh
 <pre><code># Parameterization settings. These will be explained in 2.2. Now simply copy them to run the test.
 export SCENARIOS=${LEADERBOARD_ROOT}/data/all_towns_traffic_scenarios_public.json
 export ROUTES=${LEADERBOARD_ROOT}/data/routes_devtest.xml
-export REPETITIONS=1
 export DEBUG_CHALLENGE=1
 export TEAM_AGENT=${LEADERBOARD_ROOT}/leaderboard/autoagents/human_agent.py
 export CHECKPOINT_ENDPOINT=${LEADERBOARD_ROOT}/results.json
-export CHALLENGE_TRACK_CODENAME=SENSORS
 
 ./scripts/run_evaluation.sh
 </code></pre><ul>
@@ -437,12 +435,10 @@ export CHALLENGE_TRACK_CODENAME=SENSORS
 <li>
 <p><code>ROUTES</code> <em>(XML)</em> — The set of routes that will be used for the simulation. Every route has a starting point (first waypoint), and an ending point (last waypoint). Additionally, they can contain a weather profile to set specific weather conditions. A XML contains many routes, each one with an ID. Users can modify, add, and remove routes for training and validation purposes. The Leaderboard ships with a set of routes for debug, training, and validation. The routes used for the online evaluation are secret.</p>
 </li>
-<li>
-<p><code>REPETITIONS</code> <em>(int)</em> — Number of times each route is repeated for statistical purposes.</p>
-</li>
-<li>
-<p><code>TEAM_AGENT</code> <em>(Python script)</em> — Path to the Python script that launches the agent. This has to be a class inherited from leaderboard.autoagents.autonomous_agent.AutonomousAgent. The steps to create an agent are explained in the next step.</p>
-</li>
+</ul>
+<!-- raw HTML omitted -->
+<ul>
+<li><code>TEAM_AGENT</code> <em>(Python script)</em> — Path to the Python script that launches the agent. This has to be a class inherited from leaderboard.autoagents.autonomous_agent.AutonomousAgent. The steps to create an agent are explained in the next step.</li>
 </ul>
 <p>Other relevant parameters are described below.</p>
 <ul>
@@ -694,16 +690,16 @@ routes_testing.xml: 26 routes intended to be used as verification data (58.9 Km)
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1701996979"></script>
-    <script src="/js/perfect-scrollbar.min.js?1701996979"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1701996979"></script>
-    <script src="/js/jquery.sticky.js?1701996979"></script>
-    <script src="/js/featherlight.min.js?1701996979"></script>
-    <script src="/js/highlight.pack.js?1701996979"></script>
+    <script src="/js/clipboard.min.js?1708449846"></script>
+    <script src="/js/perfect-scrollbar.min.js?1708449846"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1708449846"></script>
+    <script src="/js/jquery.sticky.js?1708449846"></script>
+    <script src="/js/featherlight.min.js?1708449846"></script>
+    <script src="/js/highlight.pack.js?1708449846"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1701996979"></script>
-    <script src="/js/learn.js?1701996979"></script>
-    <script src="/js/hugo-learn.js?1701996979"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1708449846"></script>
+    <script src="/js/learn.js?1708449846"></script>
+    <script src="/js/hugo-learn.js?1708449846"></script>
     
         
             <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script>
