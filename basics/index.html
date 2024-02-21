@@ -370,14 +370,14 @@
 <p>The driving proficiency of an agent can be characterized by multiple metrics. For this leaderboard we have selected a set of metrics that help understand different aspects of driving. The specific metrics are as follows:</p>
 <h4 id="driving-score">Driving Score</h4>
 <p>
-  The driving score \(R_(ij) (P_ij)\) is the product between the route completion and the infractions penalty. Here \(R_(ij)\) is the percentage of completion of the \(i---th\)
-route under \(j---th condition)\, and \(P_(ij)\), the infraction penalty of the \(i---th\) route under \(j---th\) condition.</p>
+  The driving score \(R_ij P_ij\) is the product between the route completion and the infractions penalty. Here \(R_(ij)\) is the percentage of completion of the \(i---th\)
+route under \(j-th)\ condition, and \(P_(ij)\), the infraction penalty of the \(i---th\) route under \(j---th\) condition.</p>
 <ul>
 <li>
 <p>Route completion: Percentage of the route distance completed by an agent.</p>
 </li>
 <li>
-<p>Infraction penalty: \(\prod\limits_{j} ((P_(ij))^{k})^{(#infractions)_k}\). — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited. More details about the different infraction types are described at the bottom of this page.</p>
+<p>Infraction penalty: \(\prod\limits_{j} ((P_(ij))^{k})^{(n)_k}\). — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited. More details about the different infraction types are described at the bottom of this page.</p>
 </li>
 </ul>
 <h4 id="robustness">Robustness</h4>
