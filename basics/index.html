@@ -385,7 +385,7 @@ route under \(j-th\) condition, and \(P_{ij}\), the infraction penalty of the \(
 <ul>
 <li>(i) The driving scores (i.e., after penalties have been applied) for the runs are grouped based on the type of traffic disturbances introduced. For example, weather driving scores [&hellip;], camera noise driving scores [&hellip;], &hellip;</li>
 <li>(ii) final score for each type of traffic disturbance is obtained by selecting the minimum score from each group. For example, if a route was run in n different weather conditions, the driving score for weather would be the least driving score obtained after running the agent in the n different weather conditions. If there are more than one routes, we will use the score from the route that produced the least score for the selected traffic disturbance type.</li>
-<li>(iii) A robustness score is computed as ratio of the driving score obtained when the disturbance is introduced and the driving score of obtained in the normal driving case. The normal driving case has no disturbance introduced. \(\frac{R_{i normal}P_{i normal}{min(R_{ij}P_{ij})}\)</li>
+<li>(iii) A robustness score is computed as ratio of the driving score obtained when the disturbance is introduced and the driving score of obtained in the normal driving case. The normal driving case has no disturbance introduced. \(\frac{R_{i normal}P_{i normal}}{min(R_{ij}P_{ij})}\)</li>
 </ul>
 <h4 id="environmental-sustainability">Environmental Sustainability</h4>
 <p>For each run we estimate the amount of CO2 Eq emitted as a result of running the agent. Note that only the system/compute process running the agent is tracked. We provide the average CO2 Eq emission for the runs as  well as the average CO2 Eq emission per seconds.</p>
