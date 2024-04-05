@@ -377,20 +377,21 @@ route under \(j-th\) condition, and \(P_{ij}\), the infraction penalty of the \(
 <p>Route completion: Percentage of the route distance completed by an agent.</p>
 </li>
 <li>
-<p>Infraction penalty: \({\prod\limits_{k}}^{ped., \ldots, stop} {({P_{ij}}^{k})}^{{\#infractions}_k}\). — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited. More details about the different infraction types are described at the bottom of this page.</p>
+<p>Infraction penalty: \(\prod\limits_{k}^{|{W}|} {({P_{ij}}^{k})}^{\left|{W_k}\right|}\), where $W$ is a set of infractions, $k$ is an infraction type in $W$, and $|W_k|$ is the number of $W_k$ that occurred.
+   — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited. More details about the different infraction types are described at the bottom of this page.</p>
 </li>
 </ul>
 <h4 id="robustness">Robustness</h4>
-<p>Each route would be run more than once depending on which type of traffic disturbances are introduced, e.g., if the traffic disturbance is weather and there are 3 weather types, then the route would be run 3 times corresponding to the 3 different weather condition. When a route has been run for the desired number of times:</p>
+<p>Each route would be run more than once depending on which type of traffic disturbances are introduced, e.g., if the traffic disturbance is 'weather' and there are 3 weather types, then the route would be run 3 times corresponding to the 3 different weather condition. When a route has been run for the desired number of times:</p>
 <ul>
-<li>(i) The driving scores (i.e., after penalties have been applied) for the runs are grouped based on the type of traffic disturbances introduced. For example, weather driving scores [&hellip;], camera noise driving scores [&hellip;], &hellip;</li>
-<li>(ii) final score for each type of traffic disturbance is obtained by selecting the minimum score from each group. For example, if a route was run in n different weather conditions, the driving score for weather would be the least driving score obtained after running the agent in the n different weather conditions. If there are more than one routes, we will use the score from the route that produced the least score for the selected traffic disturbance type.</li>
-<li>(iii) A robustness score is computed as ratio of the driving score obtained when the disturbance is introduced and the driving score of obtained in the normal/regular driving case. The normal driving case has no disturbance introduced. \(\frac{R_{i, regular}P_{i, regular}}{min(R_{ij}P_{ij})}\)</li>
+<li>(i) The driving scores (i.e., after penalties have been applied) for the runs are grouped based on the type of traffic disturbances introduced. For example, 'weather' driving scores [&hellip;], 'camera noise' driving scores [&hellip;], &hellip;</li>
+<li>(ii) final score for each type of traffic disturbance is obtained by selecting the minimum score from each group. For example, if a route was run in \(n\) different weather conditions, the driving score for 'weather' would be the least driving score obtained after running the agent in the \(n\) different weather conditions. If there were more than one routes, we will use the score from the route that produced the least score for the selected traffic disturbance type.</li>
+<li>(iii) A robustness score is computed as the ratio of the driving score obtained when the disturbance is introduced and the driving score obtained in the normal/regular driving case. The normal driving case is the case without artificially introduced disturbances. \(\frac{R_{i, regular}P_{i, regular}}{min(R_{ij}P_{ij})}\)</li>
 </ul>
 <h4 id="environmental-sustainability">Environmental Sustainability</h4>
-<p>For each run we estimate the amount of CO2 Eq emitted as a result of running the agent. Note that only the system process running the agent is tracked. We provide the average CO2 Eq emission for the runs as  well as the average CO2 Eq emission per seconds. </p>
+<p>For each run we estimate the amount of CO2 Eq emitted as a result of running the agent. Note that only the system process running the agent is tracked. We provide the average CO2 Eq emission per run as  well as the average CO2 Eq emission per seconds. </p>
 <h4 id="transparency">Transparency</h4>
-<p>As it is currently difficult to automatically assess weather an agent is interpretable or not, in this version of CARLA RAI Challenge, we are only using the qualitative responses provided by the participants regarding the transparency measures/considerations they have made while developing their agents.</p>
+<p>As it is currently difficult to automatically assess weather an agent is interpretable or not, in this version of CARLA RAI Challenge, we are only using the qualitative responses provided by the participants (including evidences from their submissions) regarding the transparency measures/considerations they made while developing their agents.</p>
 <h3 id="infractions-and-shutdown-events-contd">Infractions and shutdown events (Contd.)</h3>
 <p>The CARLA leaderboard offers individual metrics for a series of infractions. Each of these has a penalty coefficient that will be applied everytime it happens. Ordered by severity, the infractions are the following.</p>
 <ul>
