@@ -550,12 +550,12 @@ def setup(self, path_to_conf_file):
 <pre><code>def destroy(self):
     pass
 </code></pre><h3 id="36-ros-based-agents">3.6 ROS based agents</h3>
-<p>In case you want to use ROS as part of your agent, here are some recommendations to take into account:</p>
-<ul>
+<p>ROS based agents are not currently supported by the RAI Leaderboard.</p>
+<!-- <ul>
 <li><strong>ROS Melodic</strong>: Due to the leaderboard being only compatible with Python 3, we recommend using <a href="https://github.com/gramaziokohler/roslibpy" target="_blank" rel="noopener">roslibpy</a> to communicate between the leaderboard and your ROS stack.</li>
 <li><strong>ROS Noetic</strong>: As ROS Noetic is targetting Python 3, you can directly use <strong>rospy</strong> to create a node to communicate the leaderboard with your ROS stack.</li>
 <li><strong>ROS2 Foxy</strong>: Similar to ROS Noetic, you can directly use <strong>rclpy</strong> to establish the communication with your stack.</li>
-</ul>
+</ul> -->
 <h2 id="4-training-and-testing-your-agent">4. Training and testing your agent</h2>
 <p>We have prepared a set of predefined routes to serve as a starting point. You can use these routes for training and verifying the performance of your agent. Routes can be found in the folder {LEADERBOARD_ROOT}/data:</p>
 <p>routes_training.xml: 50 routes intended to be used as training data (112.8 Km).
