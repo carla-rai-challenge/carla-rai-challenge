@@ -281,21 +281,23 @@
 
 
 
-	<p>The CARLA RAI Autonomous Driving challenge requires that agents navigate predefined routes with various real-world traffic scenarios. Agents, initialized at a designated starting point, are directed to drive to a specified destination using route information presented in GPS-style coordinates, map coordinates, or route instructions. The primary objective of the Carla RAI AD leaderboard is to assess how robust the agents are to different challenging naturally occuring traffic conditions, how much they impact environmental sustainability, and how transparent they are.</p>
+	<p>The CARLA RAI Autonomous Driving challenge requires that agents navigate predefined routes with various real-world traffic scenarios.
+     Agents, initialized at a designated starting point, are directed to drive to a specified destination using route information 
+     presented in GPS-style coordinates or route instructions. The primary objective of the Carla RAI AD leaderboard is to assess how
+      robust the agents are to different challenging naturally occuring traffic conditions, how much they impact environmental sustainability,
+       and whether transparency/interpretability measures were implemented.</p>
 <p><img src="../images/task/carla-teaser.jpg" alt="ChallengeTeaser"></p>
 <h3 id="scenarios">Scenarios</h3>
-<p>Agents will face multiple traffic scenarios based on the
-<a href="https://www.nhtsa.gov/sites/nhtsa.gov/files/pre-crash_scenario_typology-final_pdf_version_5-2-07.pdf" target="_blank" rel="noopener">NHTSA typology</a>. Scenarios are a subset of the <a href="https://leaderboard.carla.org/scenarios/" target="_blank" rel="noopener">original Carla challenge scenarios</a>.</p>
+<p>Agents will face multiple traffic scenarios based on a subset of scenarios from 
+<a href="https://leaderboard.carla.org/scenarios/" target="_blank" rel="noopener">CARLA Scenario Runner</a>. Scenarios involves events as: </a>.</p>
 <ul>
-<li>Lane merging.</li>
-<li>Lane changing.</li>
+<li>Lane Following/Change.</li>
 <li>Negotiations at traffic intersections.</li>
 <li>Negotiations at roundabouts.</li>
 <li>Handling traffic lights and traffic signs.</li>
 <li>Coping with pedestrians, cyclists, and other elements.</li>
 </ul>
-<p>Below are illustrations of traffic situations that could be present in the Carla RAI AD challenge:
-<img src="../images/task/scenarios.jpg" alt="Scenarios"></p>
+
 <h3 id="participation-modalities">Participation Modalities</h3>
 <p>Unlike the original Carla AD challenge, our leaderboard only offers one participation modality, which is the SENSORS modality. Agents will receive a high-level route description indicating the key points that the path has to follow in order to reach the destination. The route is represented as a list of tuples and has two variations.</p>
 <p>For the first case, the first element of the tuple contains a waypoint, expressed as a latitude, a longitude, and a z component.</p>
@@ -334,7 +336,6 @@
 <th align="left">GNSS</th>
 <th align="left">IMU</th>
 <th align="left">LIDAR</th>
-<th align="left">RADAR</th>
 <th align="left">RGB Camera</th>
 <th align="left">Speedometer</th>
 </tr>
@@ -344,7 +345,6 @@
 <td align="left"><a href="https://carla.readthedocs.io/en/latest/ref_sensors/#gnss-sensor" target="_blank" rel="noopener">sensor.other.gnss</a></td>
 <td align="left"><a href="https://carla.readthedocs.io/en/latest/ref_sensors/#imu-sensor" target="_blank" rel="noopener">sensor.other.imu</a></td>
 <td align="left"><a href="https://carla.readthedocs.io/en/latest/ref_sensors/#lidar-sensor" target="_blank" rel="noopener">sensor.lidar.ray_cast</a></td>
-<td align="left"><a href="https://carla.readthedocs.io/en/latest/ref_sensors/#radar-sensor" target="_blank" rel="noopener">sensor.other.radar</a></td>
 <td align="left"><a href="https://carla.readthedocs.io/en/latest/ref_sensors/#rgb-camera" target="_blank" rel="noopener">sensor.camera.rgb</a></td>
 <td align="left">sensor.other.speedometer</td>
 </tr>
@@ -352,7 +352,6 @@
 <td align="left">0-1 units</td>
 <td align="left">0-1 units</td>
 <td align="left">0-1 units</td>
-<td align="left">0-2 units</td>
 <td align="left">0-4 units</td>
 <td align="left">0-1 units</td>
 </tr>
@@ -360,19 +359,16 @@
 <td align="left">GPS sensor returning geo location data.</td>
 <td align="left">6-axis Inertial Measurement Unit.</td>
 <td align="left">Velodyne 64 LIDAR</td>
-<td align="left">Long-range RADAR (up to 100 meters).</td>
 <td align="left">Regular camera that captures images.</td>
 <td align="left">Pseudosensor that provides an approximation of your linear velocity.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="evaluation-and-metrics">Evaluation and Metrics</h3>
-<p>The driving proficiency of an agent can be characterized by multiple metrics. For this leaderboard we have selected a set of metrics that help understand different aspects of driving. The specific metrics are as follows:</p>
-<h4 id="driving-score">Driving Score</h4>
+<p>For this leaderboard we have selected a set of metrics that help understand different aspects of driving. The specific metrics are as follows:</p>
+<h4 id="driving-score">Regular Driving Score</h4>
 <p>
-  The driving score \(R_{ij} P_{ij}\) is the product between the route completion and the infractions penalty. Here \(R_{ij}\) is the percentage of completion of the \(i-th\)
-route under \(j-th\) condition, and \(P_{ij}\), the infraction penalty of the \(i-th\) route under \(j-th\) condition.</p>
-<ul>
+  The driving score \(D_{i} = R_{i} P_{i}\) is the product of the route completion and the infraction penalty. Here \(R_{i}\) is the percentage of completion of the \(i-th\) route and \(P_{i}\) is the infraction penalty incurred during the \(i-th\) route.<ul>
 <li>
 <p>Route completion: Percentage of the route distance completed by an agent.</p>
 </li>
@@ -381,7 +377,7 @@ route under \(j-th\) condition, and \(P_{ij}\), the infraction penalty of the \(
    — The leaderboard tracks several types of infractions and this metric aggregates all of these infractions triggered by an agent as a geometric series. Agents start with an ideal 1.0 base score, which is reduced each type an infraction is commited. More details about the different infraction types are described at the bottom of this page.</p>
 </li>
 </ul>
-<h4 id="robustness">Robustness</h4>
+<h4 id="robustness">Robustness Driving Score</h4>
 <p>Each route would be run more than once depending on which type of traffic disturbances are introduced, e.g., if the traffic disturbance is 'weather' and there are 3 weather types, then the route would be run 3 times corresponding to the 3 different weather condition. When a route has been run for the desired number of times:</p>
 <ul>
 <li>(i) The driving scores (i.e., after penalties have been applied) for the runs are grouped based on the type of traffic disturbances introduced. For example, 'weather' driving scores [&hellip;], 'camera noise' driving scores [&hellip;], &hellip;</li>
