@@ -269,7 +269,7 @@
     <li><a href="#1-system-setup">1. System Setup</a>
       <ul>
         <li><a href="#11-get-carla-09101">1.1 Get CARLA 0.9.10.1</a></li>
-        <li><a href="#12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboard and Scenario_Runner</a></li>
+        <li><a href="#12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboards and Scenario_Runner</a></li>
         <li><a href="#13-define-the-environment-variables">1.3 Define the environment variables</a></li>
       </ul>
     </li>
@@ -342,17 +342,17 @@ cd ${CARLA_ROOT}  # Change ${CARLA_ROOT} for your CARLA root folder
 
 pip3 install -r PythonAPI/carla/requirements.txt
 </code></pre><ul>
-<li>Download the set of <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/AdditionalMaps_0.9.10.1.tar.gz" target="_blank" rel="noopener">additional maps</a> to extend the amount of training data available. Follow the instructions provided <a href="https://carla.readthedocs.io/en/0.9.10/start_quickstart/#import-additional-assets" target="_blank" rel="noopener">here</a> to install these maps.</li>
+<li>Feel free to download <a href="https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/AdditionalMaps_0.9.10.1.tar.gz" target="_blank" rel="noopener">additional maps</a> to augment the training data available. If you downloaded additional maps, follow the instructions provided <a href="https://carla.readthedocs.io/en/0.9.10/start_quickstart/#import-additional-assets" target="_blank" rel="noopener">here</a> to install the maps.</li>
 </ul>
 
 <div class="notices note" ><p>Make sure to download 0.9.10.1. This is the exact version used by the online servers.</p>
 </div>
 
-<h3 id="12-get-the-leaderboard-and-scenario_runner">1.2 Get the Leaderboard and Scenario_Runner</h3>
+<h3 id="12-get-the-leaderboard-and-scenario_runner">1.2 Clone the Leaderboards and Scenario_Runner</h3>
 <ul>
-<li>Download the Leaderboard repository.(REMEBER TO UPDATE LINK)</li>
+<li>Clone the <pre><code>leaderboard-1.0</code></pre> branch from the official Carla repository</li>
 </ul>
-<pre><code>git clone -b rai_leaderboard-1.0 --single-branch https://github.com/cognitive-robots/carla-challenge.git
+<pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/leaderboard.git
 </code></pre>
 <div class="notices note" ><p>In the following commands, change the <code>${LEADERBOARD_ROOT}</code> variable to correspond to your Leaderboard root folder.</p>
 </div>
@@ -363,35 +363,48 @@ pip3 install -r PythonAPI/carla/requirements.txt
 <pre><code>cd ${LEADERBOARD_ROOT} # Change ${LEADERBOARD_ROOT} for your Leaderboard root folder 
 pip3 install -r requirements.txt
 </code></pre><ul>
-<li>Download the Scenario_Runner repository.</li>
+<li>Similarly, clone the <pre><code>leaderboard-1.0</code></pre> branch of the Carla ScenarioRunner:</li>
 </ul>
-<pre><code>git clone -b leaderboard2.0 --single-branch https://github.com/cognitive-robots/scenario_runner
+<pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/scenario_runner.git
 </code></pre>
 <div class="notices note" ><p>In the following commands, change the <code>${SCENARIO_RUNNER_ROOT}</code> to correspond to your Scenario_Runner root folder.</p>
 </div>
-
 <ul>
 <li>Install the required Python dependencies using the same Python environments.</li>
 </ul>
 <pre><code>cd ${SCENARIO_RUNNER_ROOT} # Change ${SCENARIO_RUNNER_ROOT} for your Scenario_Runner root folder
-pip3 install -r requirements.txt
-</code></pre><h3 id="13-define-the-environment-variables">1.3 Define the environment variables</h3>
+  pip3 install -r requirements.txt
+</code></pre>
+
+<ul>
+  <li>Next, clone the RAI Carla repository and name it <pre><code>rai</code></pre> using the following command:</li>
+  </ul>
+  <pre><code>git clone -b master https://github.com/cognitive-robots/rai-leaderboard.git rai
+  </code></pre>
+
+  <ul>
+    <li>If you are adding these repositories to an existing Git repository and wish to include them as submodules, use the following commands:</li>
+    </ul>
+    <pre><code>
+      git submodule add -b leaderboard-1.0 https://github.com/carla-simulator/leaderboard.git
+      git submodule add -b leaderboard-1.0 https://github.com/carla-simulator/scenario_runner.git
+      git submodule add -b updates https://github.com/cognitive-robots/rai-leaderboard.git rai
+    </code></pre>
+  
+    <div class="notices note" ><p>In the command for the rai-leaderboard repository, we are naming the submodule <pre><code>rai</code></pre>. Ensure you use the full command as shown.</p>
+    </div>
+
+<h3 id="13-define-the-environment-variables">1.3 Setup environment variables</h3>
 <p>We need to make sure that the different modules can find each other.</p>
 <ul>
-<li>Open the ~/.bashrc profile with the following command:</li>
+<li>Update environment variables in `rai/scripts/env_var.sh`</li>
 </ul>
-<pre><code>gedit ~/.bashrc
-</code></pre><ul>
-<li>Edit your <code>~/.bashrc</code> profile, adding the definitions below. Save and close the file after editing.</li>
-</ul>
-<pre><code>export CARLA_ROOT=PATH_TO_CARLA_ROOT
-export SCENARIO_RUNNER_ROOT=PATH_TO_SCENARIO_RUNNER
-export LEADERBOARD_ROOT=PATH_TO_LEADERBOARD
-export PYTHONPATH=&quot;${CARLA_ROOT}/PythonAPI/carla/&quot;:&quot;${SCENARIO_RUNNER_ROOT}&quot;:&quot;${LEADERBOARD_ROOT}&quot;:&quot;${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg&quot;:${PYTHONPATH}
-</code></pre><ul>
-<li>Remember to source ``.bashrc` for these changes to take effect using the following command:</li>
+<ul>
+<li>Optional: You may also add the variables directly to your <code>~/.bashrc</code> profile. And remember to source ``.bashrc` for these changes to take effect using the following command. </li>
 </ul>
 <p><code>source ~/.bashrc</code></p>
+
+
 <h2 id="2-create-autonomous-agents-with-the-leaderboard">2. Create Autonomous Agents with the Leaderboard</h2>
 <h3 id="21-first-steps-with-the-leaderboard">2.1 First steps with the Leaderboard</h3>
 <p>The Leaderboard will take care of running your autonomous agent and evaluate its behavior in different traffic situations across multiple routes. To better understand this process, let’s run a basic agent.</p>
