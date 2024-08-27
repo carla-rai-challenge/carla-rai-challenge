@@ -286,12 +286,13 @@
         <li><a href="#33-override-the-sensors-method">3.3 Override the sensors method</a></li>
         <li><a href="#34-override-the-run_step-method">3.4 Override the run_step method</a></li>
         <li><a href="#35-override-the-destroy-method">3.5 Override the destroy method</a></li>
-        <li><a href="#36-ros-based-agents">3.6 ROS based agents</a></li>
+        <li><a href="#35b-override-the-destroy-method">3.6 Running your agent</a></li>
+        <li><a href="#36-ros-based-agents">3.7 ROS based agents</a></li>
       </ul>
     </li>
-    <li><a href="#4-training-and-testing-your-agent">4. Training and testing your agent</a>
+    <li><a href="#4-training-and-testing-your-agent">3. Training and testing your agent</a>
       <ul>
-        <li><a href="#41-baselines">4.1 Baselines</a></li>
+        <li><a href="#41-baselines">3.1 Baselines</a></li>
       </ul>
     </li>
   </ul>
@@ -396,25 +397,57 @@ git submodule add -b updates https://github.com/cognitive-robots/rai-leaderboard
 <h3 id="13-define-the-environment-variables">1.3 Setup environment variables</h3>
 <p>We need to make sure that the different modules can find each other.</p>
 <ul>
-<li>Update environment variables in `rai/scripts/env_var.sh`</li>
+<li>Update environment variables in <code>rai/scripts/env_var.sh</code></li>
 </ul>
 <ul>
-<li>Optional: You may also add the variables directly to your <code>~/.bashrc</code> profile. And remember to source ``.bashrc` for these changes to take effect using the command: </li>
+<li>Optional: You may also add the variables directly to your <code>~/.bashrc</code> profile. And remember to run <code>source ~/.bashrc</code> for these changes to take effect. </li>
 </ul>
+
+<h3 id="22-understanding-the-leaderboard-components">1.4. Description of the ENV variables</h3>
+    <p>When running the test, we set a series of parameters as env variables. Here are the descriptions of some of them:</p>
+    <ul>
+    <li>
+    <p><code>SCENARIOS</code> <em>(JSON)</em> — The set of scenarios that will be tested in the simulation. A scenario is defined as a traffic situation. Agents will have to overcome these scenarios in order to pass the test. Participants have access to a set of traffic scenarios that work on the publicly available towns. There are 10 types of scenarios that are instantiated using different parameters. Here is a list of the available scenarios.</p>
+    </li>
+    <li>
+    <p><code>ROUTES</code> <em>(XML)</em> — The set of routes that will be used for the simulation. Every route has a starting point (first waypoint), and an ending point (last waypoint). Additionally, they can contain a weather profile to set specific weather conditions. A XML contains many routes, each one with an ID. Users can modify, add, and remove routes for training and validation purposes. The Leaderboard ships with a set of routes for debug, training, and validation. The routes used for the online evaluation are secret.</p>
+    </li>
+    </ul>
+    <!-- raw HTML omitted -->
+    <ul>
+    <li><code>TEAM_AGENT</code> <em>(Python script)</em> — Path to the Python script that launches the agent. This has to be a class inherited from leaderboard.autoagents.autonomous_agent.AutonomousAgent. The steps to create an agent are explained in the next step.</li>
+    </ul>
+    <p>Other relevant parameters are described below.</p>
+    <ul>
+    <li>
+    <p><code>TEAM_CONFIG</code> <em>(defined by the user)</em> — Path to an arbitrary configuration file read by the provided agent. You are responsible to define and parse this file within your agent class.</p>
+    </li>
+    <li>
+    <p><code>DEBUG_CHALLENGE</code> <em>(int)</em> — Flag that indicates if debug information should be shown during the simulation. By default this variable is unset (<code>0</code>), which produces no debug information to be displayed. When this is set to <code>1</code>, the simulator will display the reference route to be followed. If this variable is set to anything greater than <code>1</code> the engine will print the complete state of the simulation for debugging purposes.</p>
+    </li>
+    <li>
+    <p><code>CHECKPOINT_ENDPOINT</code> <em>(JSON)</em> — The name of a file where the Leaderboad metrics will be recorded.</p>
+    </li>
+    <li>
+    <p><code>RECORD_PATH</code> <em>(string)</em> — Path to a folder that will store the CARLA logs. This is unset by default.
+    RESUME — Flag to indicate if the simulation should be resumed from the last route. This is unset by default.</p>
+    </li>
+    </ul>
+    <p>As you would see later on, these environment variables are passed to <code>${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py</code>, which serves as the entry point to perform the simulation. Take a look at leaderboard_evaluator.py to find out more details on how your agent will be executed and evaluated.</p>
+
 <p></p>
-<div class="notices note" ><p>Manually interrupting the Leaderboard will preemptively stop the simulation of the route, automatically moving onto the next one.</p>
-</div>
+
 
 <h2 id="3-creating-your-own-autonomous-agent">2. Creating your own Autonomous Agent</h2>
-<p>The definition of a new agent starts by creating a new class that inherits from <code>leaderboard.autoagents.autonomous_agent.AutonomousAgent</code>.</p>
+<p>The definition of a new agent starts by creating a new class that inherits from <code>rai.autoagents.base_agent.BaseAgent</code>. Note that is different from the previous CARLA leaderboard challenge where agents inherit directly from <code>leaderboard.autoagents.autonomous_agent.AutonomousAgent</code></p>
 <h3 id="31-create-get_entry_point">2.1 Create get_entry_point</h3>
 <p>First, define a function called <code>get_entry_point</code> that returns the name of your new class. This will be used to automatically instantiate your agent.</p>
-<pre><code>from leaderboard.autoagents.autonomous_agent import AutonomousAgent
+<pre><code>from rai.autoagents import base_agent
 
 def get_entry_point():
     return 'MyAgent'
 
-class MyAgent(AutonomousAgent):
+class MyAgent(base_agent.BaseAgent):
 ...
 </code></pre><h3 id="32-override-the-setup-method">2.2 Override the setup method</h3>
 <p>Within your agent class override the <code>setup</code> method. This method performs all the initialization and definitions needed by your agent. It will be automatically called each time a route is initialized. It can receive an optional argument pointing to a configuration file. Users are expected to parse this file.</p>
@@ -479,7 +512,7 @@ def setup(self, path_to_conf_file):
 </div>
 
 <p>There are also spatial restrictions that limit the placement of your sensors within the volume of your vehicle. If a sensor is located more than 3 meters away from its parent in any axis (<em>e.g. <code>[3.1,0.0,0.0]</code></em>), the setup will fail.</p>
-<h3 id="34-override-the-run_step-method">3.4 Override the run_step method</h3>
+<h3 id="34-override-the-run_step-method">2.4 Override the run_step method</h3>
 <p>This method will be called once per time step to produce a new action in the form of a <a href="https://carla.readthedocs.io/en/latest/python_api/#carlavehiclecontrol" target="_blank" rel="noopener">carla.VehicleControl</a> object. Make sure this function returns the control object, which will be use to update your agent.</p>
 <pre><code>def run_step(self, input_data, timestamp):
     control = self._do_something_smart(input_data, timestamp)
@@ -498,47 +531,38 @@ def setup(self, path_to_conf_file):
 <pre><code>def destroy(self):
     pass
   </code></pre>
-    <h3 id="22-understanding-the-leaderboard-components">3. Understanding the Leaderboard components</h3>
-    <p>When running the test, we set a series of parameters. Let’s understand these and their role in the Leaderboard.</p>
-    <ul>
-    <li>
-    <p><code>SCENARIOS</code> <em>(JSON)</em> — The set of scenarios that will be tested in the simulation. A scenario is defined as a traffic situation. Agents will have to overcome these scenarios in order to pass the test. Participants have access to a set of traffic scenarios that work on the publicly available towns. There are 10 types of scenarios that are instantiated using different parameters. Here is a list of the available scenarios.</p>
-    </li>
-    <li>
-    <p><code>ROUTES</code> <em>(XML)</em> — The set of routes that will be used for the simulation. Every route has a starting point (first waypoint), and an ending point (last waypoint). Additionally, they can contain a weather profile to set specific weather conditions. A XML contains many routes, each one with an ID. Users can modify, add, and remove routes for training and validation purposes. The Leaderboard ships with a set of routes for debug, training, and validation. The routes used for the online evaluation are secret.</p>
-    </li>
-    </ul>
-    <!-- raw HTML omitted -->
-    <ul>
-    <li><code>TEAM_AGENT</code> <em>(Python script)</em> — Path to the Python script that launches the agent. This has to be a class inherited from leaderboard.autoagents.autonomous_agent.AutonomousAgent. The steps to create an agent are explained in the next step.</li>
-    </ul>
-    <p>Other relevant parameters are described below.</p>
-    <ul>
-    <li>
-    <p><code>TEAM_CONFIG</code> <em>(defined by the user)</em> — Path to an arbitrary configuration file read by the provided agent. You are responsible to define and parse this file within your agent class.</p>
-    </li>
-    <li>
-    <p><code>DEBUG_CHALLENGE</code> <em>(int)</em> — Flag that indicates if debug information should be shown during the simulation. By default this variable is unset (<code>0</code>), which produces no debug information to be displayed. When this is set to <code>1</code>, the simulator will display the reference route to be followed. If this variable is set to anything greater than <code>1</code> the engine will print the complete state of the simulation for debugging purposes.</p>
-    </li>
-    <li>
-    <p><code>CHECKPOINT_ENDPOINT</code> <em>(JSON)</em> — The name of a file where the Leaderboad metrics will be recorded.</p>
-    </li>
-    <li>
-    <p><code>RECORD_PATH</code> <em>(string)</em> — Path to a folder that will store the CARLA logs. This is unset by default.
-    RESUME — Flag to indicate if the simulation should be resumed from the last route. This is unset by default.</p>
-    </li>
-    </ul>
-    <p>These environment variables are passed to <code>${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py</code>, which serves as the entry point to perform the simulation. Take a look at leaderboard_evaluator.py to find out more details on how your agent will be executed and evaluated.</p>
 
-<h2 id="4-training-and-testing-your-agent">4. Training and testing your agent</h2>
-<p>We have prepared a set of predefined routes to serve as a starting point. You can use these routes for training and verifying the performance of your agent. Routes can be found in the folder <code>${LEADERBOARD_ROOT}/data</p>code>:</p>
-<p>routes_training.xml: 50 routes intended to be used as training data (112.8 Km).
-routes_testing.xml: 26 routes intended to be used as verification data (58.9 Km).</p>
-<h3 id="41-baselines">4.1 Baselines</h3>
+  <h3 id="35b-override-the-destroy-method">2.6 Running your agent</h3>
+  <ul> <li><b>Without Docker:</b></li> 
+    <p>To run the evaluation locally without creating a Docker image:</p>
+    <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
+    <li><b>With Docker</b></li>
+    <p>To run with docker:</p>
+    <ol>
+      <li>First, create a Docker image for your agent. Ensure the <code>team_code</code> directory is outside the leaderboard. </li>
+      <li> Update <code>rai/scripts/make_docker.sh</code> to include agent-specific files you want to copy to the Docker container, such as <code>requirements.txt</code>, model weights, etc. </li>
+      <li>Lastly, update the USER COMMANDS section in <code>rai/scripts/Dockerfile.master</code> to include agent-specific environment variables and install any necessary Python/Conda packages.</li>
+      <li>Build the Docker image by running:</li>
+      <pre><code>bash rai/scripts/make_docker.sh</code></pre>
+      <li>Once the image is built, run the Docker image with:</li>
+      <pre><code>docker run --ipc=host --gpus all --net=host -e DISPLAY=$DISPLAY -it -e SDL_VIDEODRIVER=x11 -v /tmp/.X11-unix:/tmp/.X11-unix <image:tag> /bin/bash</code></pre>
+      <li>Finally, run the evaluation script within the Docker container:</li>
+      <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
+      </ol>
+</ul>
+<div class="notices note" ><p>Manually interrupting the Leaderboard will preemptively stop the simulation of the route, automatically moving onto the next one.</p>
+</div>
+
+<h2 id="4-training-and-testing-your-agent">3. Training and testing your agent</h2>
+<p>The previous CARLA Leaderboard provides a set of predefined routes to serve as a starting point. You can use these routes for training and verifying the performance of your agent. Routes can be found in the folder <code>${LEADERBOARD_ROOT}/data</code>:</p>
+<p><b>routes_training.xml:</b> 50 routes intended to be used as training data (112.8 Km).
+<p><b>routes_testing.xml:</b> 26 routes intended to be used as verification data (58.9 Km).</p>
+
+<h3 id="41-baselines">3.1 Baselines</h3>
 <p><a href="https://github.com/bradyz" target="_blank" rel="noopener">Brady Zhou</a> has created a <a href="https://github.com/bradyz/2020_CARLA_challenge/" target="_blank" rel="noopener">starter kit</a> based on the <a href="https://arxiv.org/abs/1912.12294" target="_blank" rel="noopener">Learning by Cheating</a> approach.
 Also look at our <a href="https://www.arxiv.org/pdf/2408.08584" target="_blank"> paper </a> to see how these baselines perform with respect to RAI.</p>
 
-<h3 id="36-ros-based-agents">5. ROS based agents</h3>
+<h3 id="36-ros-based-agents">4. ROS based agents</h3>
 <p>ROS based agents are not currently supported by the RAI Leaderboard.</p>
 
 <footer class=" footline" >
