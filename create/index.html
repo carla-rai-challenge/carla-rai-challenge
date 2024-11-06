@@ -351,6 +351,11 @@ pip3 install -r PythonAPI/carla/requirements.txt
 
 <h3 id="12-get-the-leaderboard-and-scenario_runner">1.2 Clone the Leaderboards and Scenario_Runner</h3>
 <ul>
+  If you wish to host your agent code online, fork your own version of the <a href="https://github.com/cognitive-robots/rai-leaderboard" target="_blank" rel="noopener">rai-leaderboard</a> so you can modify it easily for your agent.
+
+  <em>If you prefer to clone the repositories (leaderboard, scenario_runner, rai-leaderboard) directly, proceed with steps below, or skip to step to add them as git submodules.</em>
+<ul>
+<ul>
 <li>Clone the <code>leaderboard-1.0</code> branch from the official CARLA repository</li>
 </ul>
 <pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/leaderboard.git
@@ -378,9 +383,9 @@ pip3 install -r requirements.txt
 </code></pre>
 
 <ul>
-  <li>Next, clone the RAI CARLA repository and name it <code>rai</code> using the following command:</li>
+  <li>Next, clone the <code>rai-leaderboard</code> repository (or your fork of it) and name it <code>rai</code> using the following command:</li>
   </ul>
-  <pre><code>git clone -b master https://github.com/cognitive-robots/rai-leaderboard.git rai
+  <pre><code>git clone -b main https://github.com/cognitive-robots/rai-leaderboard.git rai # or use the URL of your fork
   </code></pre>
 
   <ul>
@@ -388,7 +393,7 @@ pip3 install -r requirements.txt
     </ul>
     <pre><code>git submodule add -b leaderboard-1.0 https://github.com/carla-simulator/leaderboard.git
 git submodule add -b leaderboard-1.0 https://github.com/carla-simulator/scenario_runner.git
-git submodule add -b updates https://github.com/cognitive-robots/rai-leaderboard.git rai
+git submodule add -b main https://github.com/cognitive-robots/rai-leaderboard.git rai # or use the URL of your fork
     </code></pre>
   
     <div class="notices note" ><p>In the command for the rai-leaderboard repository, we are naming the submodule <code>rai</code>. Ensure you use the full command as shown.</p>
@@ -533,23 +538,37 @@ def setup(self, path_to_conf_file):
   </code></pre>
 
   <h3 id="35b-override-the-destroy-method">2.6 Running your agent</h3>
-  <ul> <li><b>Without Docker:</b></li> 
-    <p>To run the evaluation locally without creating a Docker image:</p>
-    <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
-    <li><b>With Docker</b></li>
-    <p>To run with docker:</p>
-    <ol>
-      <li>First, create a Docker image for your agent. Ensure the <code>team_code</code> directory is outside the leaderboard. </li>
-      <li> Update <code>rai/scripts/make_docker.sh</code> to include agent-specific files you want to copy to the Docker container, such as <code>requirements.txt</code>, model weights, etc. </li>
-      <li>Lastly, update the USER COMMANDS section in <code>rai/scripts/Dockerfile.master</code> to include agent-specific environment variables and install any necessary Python/Conda packages.</li>
-      <li>Build the Docker image by running:</li>
-      <pre><code>bash rai/scripts/make_docker.sh</code></pre>
-      <li>Once the image is built, run the Docker image with:</li>
-      <pre><code>docker run --ipc=host --gpus all --net=host -e DISPLAY=$DISPLAY -it -e SDL_VIDEODRIVER=x11 -v /tmp/.X11-unix:/tmp/.X11-unix <image:tag> /bin/bash</code></pre>
-      <li>Finally, run the evaluation script within the Docker container:</li>
-      <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
-      </ol>
-</ul>
+    <h4 id="35c-running-carla-server"> Carla Server</h4>
+      <li>Start the Carla server before running the agent.</li>
+
+      <ul> <li><b>Without Docker:</b></li> 
+        <pre><code>cd &lt;your carla installation path&gt; </br>./CarlaUE4.sh </code></pre>
+  
+        <li><b>With Docker</b></li>
+          <p>For detailed instructions on running the Carla server inside Docker, refer to the <a href="https://carla.readthedocs.io/en/latest/build_docker/" target="_blank" rel="noopener">Carla documentation</a>.</p>
+  
+        <p>A quick command to get started is shown below:</p>
+  
+        <pre><code>docker run --privileged --gpus all --net=host -e DISPLAY=${DISPLAY} -it -e SDL_VIDEODRIVER=x11 -v /tmp/.X11-unix:/tmp/.X11-unix carlasim/carla:0.9.10.1 /bin/bash <br><br># launch carla inside the container</br>./CarlaUE4.sh </code></pre>
+
+    <h4 id="35d-running-agent"> Agent</h4>
+      <ul> <li><b>Without Docker:</b></li> 
+        <p>To run the evaluation locally without creating a Docker image:</p>
+        <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
+        <li><b>With Docker</b></li>
+        <p>To run with docker:</p>
+        <ol>
+          <li>First, create a Docker image for your agent. Ensure the <code>team_code</code> directory is outside the leaderboard. </li>
+          <li> Update <code>rai/scripts/make_docker.sh</code> to include agent-specific files you want to copy to the Docker container, such as <code>requirements.txt</code>, model weights, etc. </li>
+          <li>Lastly, update the USER COMMANDS section in <code>rai/scripts/Dockerfile.master</code> to include agent-specific environment variables and install any necessary Python/Conda packages.</li>
+          <li>Build the Docker image by running:</li>
+          <pre><code>bash rai/scripts/make_docker.sh -t &lt;image:tag&gt; </code></pre>
+          <li>Once the image is built, run the Docker image with:</li>
+          <pre><code>docker run --ipc=host --gpus all --net=host -e DISPLAY=$DISPLAY -it -e SDL_VIDEODRIVER=x11 -v /tmp/.X11-unix:/tmp/.X11-unix <image:tag> /bin/bash</code></pre>
+          <li>Finally, run the evaluation script within the Docker container:</li>
+          <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
+          </ol>
+    </ul>
 <div class="notices note" ><p>Manually interrupting the Leaderboard will preemptively stop the simulation of the route, automatically moving onto the next one.</p>
 </div>
 
