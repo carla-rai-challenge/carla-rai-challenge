@@ -564,7 +564,7 @@ def setup(self, path_to_conf_file):
           <li>Build the Docker image by running:</li>
           <pre><code>bash rai/scripts/make_docker.sh -t &lt;image:tag&gt; </code></pre>
           <li>Once the image is built, run the Docker image with:</li>
-          <pre><code>docker run --ipc=host --gpus all --net=host -e DISPLAY=$DISPLAY -it -e SDL_VIDEODRIVER=x11 -v /tmp/.X11-unix:/tmp/.X11-unix <image:tag> /bin/bash</code></pre>
+          <pre><code>docker run --ipc=host --gpus all --net=host -e DISPLAY=$DISPLAY -it -e SDL_VIDEODRIVER=x11 -v /tmp/.X11-unix:/tmp/.X11-unix &lt;image:tag&gt; /bin/bash</code></pre>
           <li>Finally, run the evaluation script within the Docker container:</li>
           <pre><code>bash rai/scripts/run_evaluation.sh</code></pre>
           </ol>
