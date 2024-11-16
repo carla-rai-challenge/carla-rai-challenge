@@ -354,47 +354,52 @@ pip3 install -r PythonAPI/carla/requirements.txt
   If you wish to host your agent code online, fork your own version of the <a href="https://github.com/cognitive-robots/rai-leaderboard" target="_blank" rel="noopener">rai-leaderboard</a> so you can modify it easily for your agent.
 
   <em>If you prefer to clone the repositories (leaderboard, scenario_runner, rai-leaderboard) directly, proceed with steps below, or skip to step to add them as git submodules.</em>
-<ul>
-<ul>
-<li>Clone the <code>leaderboard-1.0</code> branch from the official CARLA repository</li>
 </ul>
-<pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/leaderboard.git
-</code></pre>
+<ul>
+  <li>Clone the <code>leaderboard-1.0</code> branch from the official CARLA repository</li>
+  <pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/leaderboard.git
+  </code></pre>
+</ul>
+
 <div class="notices note" ><p>In the following commands, change the <code>${LEADERBOARD_ROOT}</code> variable to correspond to your Leaderboard root folder.</p>
 </div>
 
 <ul>
-<li>Install the required Python dependencies.</li>
+    <li>Install the required Python dependencies.</li>
+    <pre><code>cd ${LEADERBOARD_ROOT} # Change ${LEADERBOARD_ROOT} for your Leaderboard root folder 
+    pip3 install -r requirements.txt
+    </code></pre>
 </ul>
-<pre><code>cd ${LEADERBOARD_ROOT} # Change ${LEADERBOARD_ROOT} for your Leaderboard root folder 
-pip3 install -r requirements.txt
-</code></pre><ul>
-<li>Similarly, clone the <code>leaderboard-1.0</code> branch of the CARLA ScenarioRunner:</li>
+
+<ul>
+    <li>Similarly, clone the <code>leaderboard-1.0</code> branch of the CARLA ScenarioRunner:</li>
+    <pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/scenario_runner.git
+    </code></pre>
 </ul>
-<pre><code>git clone -b leaderboard-1.0 --single-branch https://github.com/carla-simulator/scenario_runner.git
-</code></pre>
+
 <div class="notices note" ><p>In the following commands, change the <code>${SCENARIO_RUNNER_ROOT}</code> to correspond to your Scenario_Runner root folder.</p>
 </div>
+
 <ul>
-<li>Install the required Python dependencies using the same Python environments.</li>
+    <li>Install the required Python dependencies using the same Python environments.</li>
+    <pre><code>cd ${SCENARIO_RUNNER_ROOT} # Change ${SCENARIO_RUNNER_ROOT} for your Scenario_Runner root folder
+    pip3 install -r requirements.txt
+    </code></pre>
 </ul>
-<pre><code>cd ${SCENARIO_RUNNER_ROOT} # Change ${SCENARIO_RUNNER_ROOT} for your Scenario_Runner root folder
-pip3 install -r requirements.txt
-</code></pre>
 
 <ul>
   <li>Next, clone the <code>rai-leaderboard</code> repository (or your fork of it) and name it <code>rai</code> using the following command:</li>
-  </ul>
   <pre><code>git clone -b main https://github.com/cognitive-robots/rai-leaderboard.git rai # or use the URL of your fork
   </code></pre>
+  </ul>
 
   <ul>
     <li>If you are adding these repositories to an existing Git repository and wish to include them as submodules, use the following commands:</li>
-    </ul>
     <pre><code>git submodule add -b leaderboard-1.0 https://github.com/carla-simulator/leaderboard.git
 git submodule add -b leaderboard-1.0 https://github.com/carla-simulator/scenario_runner.git
 git submodule add -b main https://github.com/cognitive-robots/rai-leaderboard.git rai # or use the URL of your fork
     </code></pre>
+    </ul>
   
     <div class="notices note" ><p>In the command for the rai-leaderboard repository, we are naming the submodule <code>rai</code>. Ensure you use the full command as shown.</p>
     </div>
@@ -524,7 +529,7 @@ def setup(self, path_to_conf_file):
     return control
 </code></pre><ul>
 <li>
-<p><strong>input_data</strong>: A dictionary containing sensor data for the requested sensors. The data has been preprocessed at <a href="https://github.com/carla-simulator/leaderboard/blob/stable/leaderboard/envs/sensor_interface.py#L140" target="_blank" rel="noopener">REMEMBER TO UPDATE LINK sensor_interface.py</a>, and will be given as numpy arrays. This dictionary is indexed by the ids defined in the <a href="https://leaderboard.carla.org/get_started_v1/#33-override-the-sensors-method" target="_blank" rel="noopener">sensor</a> method.</p>
+<p><strong>input_data</strong>: A dictionary containing sensor data for the requested sensors. The data has been preprocessed at <a href="https://github.com/carla-simulator/leaderboard/blob/stable/leaderboard/envs/sensor_interface.py#L140" target="_blank" rel="noopener">sensor_interface.py</a>, and will be given as numpy arrays. This dictionary is indexed by the ids defined in the <a href="https://leaderboard.carla.org/get_started_v1/#33-override-the-sensors-method" target="_blank" rel="noopener">sensor</a> method.</p>
 </li>
 <li>
 <p><strong>timestamp</strong>: A timestamp of the current simulation instant.</p>
